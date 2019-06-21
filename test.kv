@@ -1,0 +1,1040 @@
+#:import rgba kivy.utils.rgba
+#: include dokte.kv
+
+<MyScreenManager>:
+
+    id: screen_manager
+
+    screen_login: login
+    screen_doctor: doctor
+    screen_accountant:accountant
+
+
+    ScreenLogin:
+        id: login
+        name: 'Login'
+        manager: screen_manager
+
+    ScreenDoctor:
+        id: doctor
+        name: 'Doctor'
+        manager: screen_manager
+
+    ScreenAdmin:
+        id: accountant
+        name: 'Admin'
+        manager: screen_manager
+
+
+        
+                                                            
+                                        
+                 
+<ScreenAdmin> :
+    BoxLayout:
+        BoxLayout:
+            BoxLayout:
+                BoxLayout:
+                    orientation:'vertical'
+                    padding: root.width*0.005,root.height*0.005
+                    canvas:
+                        Color:
+                            rgba: 1,1,1,1
+                        Rectangle:
+                            pos:self.pos
+                            size:self.size
+                    GridLayout:
+                        cols :1
+                        spacing:20
+                        row_force_default: True
+                        row_default_height: 40
+                        BoxLayout:
+                            orientation:'vertical'
+                            BoxLayout:
+                                
+                                ImageButton:
+                                    
+                                    source:'manage.png'  
+                                    size_hint:None,None
+                                    size:(70,70)
+                                Label:
+                                    text:"Manage patients"
+                                    halign: 'left'
+                                    color:0,0,0,1
+                                    size_hint_x:None
+                                    width:400
+                                    font_size:40
+                                    
+                            BoxLayout:
+                                
+                                canvas.before:
+                                    
+                                    Color:
+                                        rgba: 0, 0, 0, .2
+                                    Line:
+                                        width:1
+                                        rectangle: (self.x,self.y-5, self.width, 0)
+                                Label:
+                                    text:""
+                                    halign: 'left'
+                                    color:0,0,0,1
+                                    size_hint_x:None
+                                    width:400
+                                    font_size:40
+                    BoxLayout:
+                        orientation:'vertical'
+                        canvas.before:
+                                        
+                            Color:
+                                rgba: 0, 0, 0, .2
+                            Line:
+                                width:1
+                                rectangle: (self.x,self.y, self.width,self.height)
+
+                        BoxLayout:
+                            
+                            ImageButton:
+                                
+                                source:'list.png'  
+                                size_hint_x:None
+                                width:70
+                            Button:
+                                text:"Patient List"
+                                halign: 'left'
+                                background_normal:""
+                                background_down:'dark.png'
+                                background_color: 1,1,1,1
+                                color:0,0,0,1
+                                font_size: 25
+                                size_hint_x:None
+                                width:200
+
+                            Button:
+                                text:" + Add Patient"
+                                background_normal:""
+                                background_down:'dark.png'
+                                background_color: 1,1,1,1
+                                font_size: 25
+                                color:0,0,0,1
+                                size_hint_x:None
+                                width:200
+
+                        BoxLayout:
+                            orientation:'vertical'
+                            
+                            BoxLayout:
+
+                                Label:
+                                    text:'Search'
+                                    color:0,0,0,1
+                                    font_size:28
+                                    size_hint:None,None
+                                    size:(200,50)
+
+                                TextInput:
+                                    multiline:False
+                                    id:searchpatient
+                                    font_size:28
+                                    size_hint:None,None
+                                    size:(200,50)
+                        
+                            BoxLayout:
+                                id:all
+
+      
+
+
+                        
+
+
+ 
+
+                        
+<ScreenLogin>:
+
+    manage_patient:manage_patient
+    
+    BoxLayout:
+        orientation: 'vertical'
+        padding: root.width*0.005,root.height*0.005
+        canvas:
+            Color:
+                rgba:1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        ActionBar:
+            pos_hint: {'top':1}
+            ActionView:
+                use_separator: True
+                ActionPrevious:
+                    title: 'Hospital Management System'
+                    with_previous: False
+                ActionButton:
+                    text: "Accountant's Panel"
+                    background_down:'1,0,1,0'
+                    
+                ActionGroup:
+                    text: " Account"
+                    mode: 'spinner'
+                    ActionButton:
+                        text: 'Profile'
+                        on_press:root.profile()
+                    ActionButton:
+                        text: 'Log Out'
+                        on_press:root.manager.current='Login'
+
+
+                
+        BoxLayout:
+            orientation:'horizontal'
+            spacing:2
+                
+            BoxLayout:
+                orientation:'vertical'
+                size_hint:(None,None)
+                size:300, self.parent.height  
+                spacing:20
+                
+                BoxLayout:
+                    orientation:'vertical'
+                    
+                    canvas:
+                        Color:
+                            rgba: rgba('#010c47')
+                        Rectangle:
+                            pos:self.pos
+                            size:self.size
+                    
+                    ImageButton:
+                                
+                        source:'hsign.png'  
+                        size_hint:(None,None)
+                        size:(200,80)
+                        
+                    Label:
+                        text:""
+                        size_hint_y:None
+                        height:15
+                        canvas.before:
+                                
+                            Color:
+                                rgba: 1, 1, 1, .2
+                            Line:
+                                width:1
+                                rectangle: (self.x,self.y+10, self.width, 0)
+                                                     
+
+                            
+                        
+
+                    GridLayout:
+                        cols :1
+                        spacing:20
+                        row_force_default: True
+                        row_default_height: 40
+                        BoxLayout:
+                            
+                            canvas.before:
+                                
+                                Color:
+                                    rgba: 1, 1, 1, .2
+                                Line:
+                                    width:1
+                                    rectangle: (self.x,self.y-5, self.width, 0)
+                                                     
+
+                            ImageButton:
+                                
+                                source:'computer.png'  
+                                size_hint_x:None
+                                width:70
+                            Button:
+                                text:"DashBoard"
+                                halign: 'left'
+                                background_normal:""
+                                background_color: rgba('#010c47')
+                                background_down:'dark.png'
+                                font_size: 25
+                                size_hint_x:None
+                                width:200
+                                on_press:root.account_dashboard()
+
+                        BoxLayout:
+                            
+                            canvas.before:
+                                
+                                Color:
+                                    rgba: 1, 1, 1, .2
+                                Line:
+                                    width:1
+                                    rectangle: (self.x,self.y-5, self.width, 0)
+                                                     
+
+                            ImageButton:
+                                
+                                source:'patient.png'  
+                                size_hint_x:None
+                                width:70
+                            Button:
+                                text:"Take Payment "
+                                background_normal:""
+                                background_color: rgba('#010c47')
+                                background_down:'dark.png'
+                                font_size: 25
+                                size_hint_x:None
+                                width:200
+                        BoxLayout:
+                            canvas.before:
+                                
+                                Color:
+                                    rgba: 1, 1, 1, .2
+                                Line:
+                                    width:1
+                                    rectangle: (self.x,self.y-5, self.width, 0)
+                                                     
+
+                            ImageButton:
+                                
+                                source:'pencil.png'  
+                                size_hint_x:None
+                                width:70
+                                
+                            Button:
+                                text:"View Payment "
+                                background_normal:""
+                                background_down:'dark.png'
+                                background_color: rgba('#010c47')
+                                font_size: 25
+                                size_hint_x:None
+                                width:200
+
+                        
+
+                       
+
+                       
+
+                        
+                        BoxLayout:
+                            
+                            canvas.before:
+                                
+                                Color:
+                                    rgba: 1, 1, 1, .2
+                                Line:
+                                    width:1
+                                    rectangle: (self.x,self.y-5, self.width, 0)
+                                                     
+
+                            ImageButton:
+                                
+                                source:'boy.png'  
+                                size_hint_x:None
+                                width:70
+                                
+                            Button:
+                                text:"Profile"
+                                background_normal:""
+                                background_down:'dark.png'
+                                background_color: rgba('#010c47')
+                                font_size: 25
+                                size_hint_x:None
+                                width:200
+                                on_press:root.profile()
+
+                        
+
+
+
+
+       
+
+  
+                            
+                                          
+##########         """ dynamic part begins here"""    ######################
+
+                                
+         
+            BoxLayout:
+                ScrollView:
+                    size:self.size
+                    bar_width: 10
+                    bar_color: 1, 0, 0, 1   # red
+                    bar_inactive_color: 0, 0, 1, 1   # blue
+                    effect_cls: "ScrollEffect"
+                    scroll_type: ['bars']
+                    
+                    GridLayout:
+                        cols:1
+                        id: view
+                        size_hint_y: 1
+                        padding:self.height*0.01, self.width*0.01
+                        
+                        BoxLayout:
+                            size_hint_y: None
+                            height:self.minimum_height
+                            spacing:30
+                            orientation: 'vertical'
+                            canvas:
+                                Color:
+                                    rgba: 0, 0, 0, .3
+                                Line:
+                                    width: 1.
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                            BoxLayout:
+                                id:manage_patient
+                                orientation: 'vertical'
+                                spacing:30
+                                padding:self.height*0.02, self.width*0.02
+                                size_hint_y: None
+                                height:self.minimum_height
+
+                                
+
+                                                                    
+                                        
+                                        
+                                BoxLayout:
+                                    orientation:'horizontal'
+                                    size_hint_y: None
+                                    height:self.minimum_height
+                                    spacing:40
+                                    
+                                    GridLayout:
+                                        cols:2
+
+                                        spacing:20
+
+                                        
+                                        Label:
+                                            
+                                            text:'unique Id:'
+                                            font_size: 20
+                                            color:0,0,0,1
+                                            size_hint_y:None
+                                            height:40
+
+
+
+                                        TextInput:
+                                            size_hint:None,None
+                                            size:(200,40)
+                                            multiline:False
+                                            font_size: 25
+                                            
+
+
+                                            
+                                            
+                                        Label:
+                                            text:'Name:'
+                                            font_size: 25
+                                            color:0,0,0,1
+                                            size_hint_y: None
+                                            height:40
+                                            
+                                            
+
+
+
+                                        TextInput:
+                                            multiline:False
+                                            font_size: 25
+                                            size_hint:None,None
+                                            size:(200,40)
+
+
+                                    
+                                    GridLayout:
+                                        cols:2
+                                        size_hint_y: None
+                                        height:self.minimum_height
+                                        spacing:20
+
+
+                                        Label:
+                                            text:'Gender'
+                                            font_size: 25
+                                            color:0,0,0,1
+                                            size_hint_y: None
+                                            height:40
+
+
+
+                                        TextInput:
+                                            multiline:False
+                                            font_size: 25
+                                            size_hint:None,None
+                                            size:(200,40)
+
+                                        Label:
+                                            text:'Age'
+                                            font_size: 25
+                                            color:0,0,0,1
+                                            size_hint_y:None
+                                            height:40
+
+
+
+                                        TextInput:
+                                            multiline:False
+                                            font_size: 25
+                                            size_hint:None,None
+                                            size:(70,40)
+                                                
+                                        
+                               
+                                    
+                                    GridLayout:
+                                        cols:2
+                                        size_hint_y: None
+                                        height:self.minimum_height
+                                        spacing:20
+                                        
+                                        Label:
+                                            text:'Doctor'
+                                            font_size: 25
+                                            color:0,0,0,1                                       
+                                            height:40
+
+
+
+
+
+                                        TextInput:
+                                            multiline:False
+                                            font_size: 25
+                                            size_hint_y: None
+                                            height:35
+
+
+                                            
+
+                                        Label:
+                                            text:'Blood Group'
+                                            font_size: 25
+                                            color:0,0,0,1
+                                            size_hint_y: None
+                                            height:40
+
+
+
+
+
+                                        TextInput:
+                                            multiline:False
+                                            font_size: 25 
+                                            size_hint_y: None
+                                            height:35
+
+
+                                    
+                                   
+                        Label:
+                            text:''
+                            font_size: 25
+                            color:0,0,0,1
+                            size_hint_y: None
+                            height:20
+
+                        BoxLayout:
+                            orientation:'horizontal'
+                            size_hint_y: None
+                            height:self.minimum_height
+                            
+                            BoxLayout:
+                                orientation:'vertical'
+                                size_hint_y: None
+                                height:self.minimum_height
+                                padding: self.height*0.01, self.width*0.01
+                                canvas:
+                                    Color:
+                                        rgba: 0, 0, 0, .3
+                                    Line:
+                                        width: 1
+                                        rectangle: (self.x, self.y, self.width, self.height)
+                           
+
+                                
+                                BoxLayout:
+                                    orientation:'horizontal'
+                                    size_hint_y: None
+                                    height:self.minimum_height
+                                    spacing:10
+
+                                    Button:
+                                        text:"Prev history"
+                                        halign: 'left'
+                                        background_normal:""
+                                        background_color: rgba('#010c47')
+                                        background_down:'dark.png'
+                                        font_size: 25
+                                        size_hint:None,None
+                                        size:(200,40)
+
+
+                                    Button:
+                                        text:"Health Details"
+                                        halign: 'left'
+                                        background_normal:""
+                                        background_color: rgba('#010c47')
+                                        background_down:'dark.png'
+                                        font_size: 25
+                                        size_hint:None,None
+                                        size:(200,40)
+
+                                    Button:
+                                        text:"Documents"
+                                        halign: 'left'
+                                        background_normal:""
+                                        background_color: rgba('#010c47')
+                                        background_down:'dark.png'
+                                        font_size: 25
+                                        size_hint:None,None
+                                        size:(200,40)
+
+
+                                    Button:
+                                        text:"Prescription"
+                                        halign: 'left'
+                                        background_normal:""
+                                        background_color: rgba('#010c47')
+                                        background_down:'dark.png'
+                                        font_size: 25
+                                        size_hint:None,None
+                                        size:(200,40)
+
+                                    Button:
+                                        text:"Lab Report"
+                                        halign: 'left'
+                                        background_normal:""
+                                        background_color: rgba('#010c47')
+                                        background_down:'dark.png'
+                                        font_size: 25
+                                        size_hint:None,None
+                                        size:(180,40)
+
+                                   
+
+                                BoxLayout:
+                                    size_hint_y: None
+                                    height:500
+                                    spacing:10
+                                    size_hint_y: None
+                                    height:self.minimum_height
+
+                                    canvas:
+                                        Color:
+                                            rgba: 0, 0, 0, .3
+                                        Line:
+                                            width: 1
+                                            rectangle: (self.x, self.y, self.width, self.height)
+                               
+
+                                    Label:
+                                        text:'Patient Case History'
+                                        size_hint:None,None
+                                        size:(700,1000)
+                                        font_size:
+                                        color:0,0,0,1
+                                        
+                                            
+                                            
+                                                
+                                
+        
+<Manage_Profile>:
+    
+    GridLayout:
+        cols:1
+        
+        BoxLayout:
+            orientation:'vertical'
+            canvas:
+                Color:
+                    rgba: 1,1,1,.8
+                Rectangle:
+                    pos:self.pos
+                    size:self.size
+            
+            
+            BoxLayout:
+                
+                BoxLayout:
+                    
+                    GridLayout:
+                        cols :1  
+                        GridLayout:
+                            cols :1
+                            size_hint_y:dp(0.5)
+                            
+                           
+                            
+                            Label:
+                                text:"Manage Profile"
+                                color:0,0,0,1
+                                size_hint_y:None
+                                font_size:40
+                                height:60
+
+                            Label:
+                                text:""
+                                color:0,0,0,1
+                                size_hint_y:None
+                                font_size:40
+                                height:20
+                                canvas.before:
+                                        
+                                    Color:
+                                        rgba: 0, 0, 0, 1
+                                    Line:
+                                        width:1
+                                        rectangle: (self.x,self.y+20, self.width, 0)
+                            
+                            GridLayout:
+                                cols :1
+                                spacing:20
+                                row_force_default:True
+                                row_default_height:40
+                                padding:[50,10,50,0]
+                                
+
+
+                                BoxLayout:
+                                    spacing:10
+                                    
+                                    ImageButton:
+                                        
+                                        source:'boy.png'  
+                                        size_hint:None,None
+                                        size:70,40
+                                    Button:
+                                        text:"Manage profile"
+                                        halign: 'left'
+                                        color:0,0,0,1
+                                        background_normal:""
+                                        background_down:'dark.png'
+                                        font_size: 25
+                                        size_hint:None,None
+                                        size:200,40
+                                        
+                                    Button:
+                                        text:""
+                                        halign: 'left'
+                                        background_normal:""
+                                        background_color: rgba('#010c47')
+                                        background_down:'dark.png'
+                                        font_size: 25
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:[0,10,30,0]
+                                    canvas.before:
+                                        Color:
+                                            rgba:0,0,0,1
+                                        Line:
+                                            width:1
+                                            rectangle:(self.x,self.y-195, self.width,self.height+195 )
+                            
+                                   
+                                    GridLayout:
+                                        spacing:10
+                                        cols:2
+                                        
+                                                
+                                        Label:
+                                            text:"Name"
+                                            color:0,0,0,1
+                                            
+
+                                        TextInput:
+                                            multiline:False
+                                            id:profile_name
+                                            size_hint:None,None
+                                            size:400,40
+
+
+                                                
+                                        Label:
+                                            text:"Email"
+                                            color:0,0,0,1
+                                            
+
+                                        TextInput:
+                                            multiline:False
+                                            id:profile_email
+                                            size_hint:None,None
+                                            size:400,40
+
+
+                                                
+                                        Label:
+                                            text:"Address"
+                                            color:0,0,0,1
+                                            
+
+                                        TextInput:
+                                            multiline:False
+                                            id:profile_address
+                                            size_hint:None,None
+                                            size:400,40
+
+                                                
+                                        Label:
+                                            text:"Phone"
+                                            color:0,0,0,1
+                                            
+
+                                        TextInput:
+                                            multiline:False
+                                            id:profile_phone
+                                            size_hint:None,None
+                                            size:400,40
+                                    
+                                    
+                                       
+                                        Label:
+                                            text:""
+                                            color:0,0,0,1
+                                            size_hint:None,None
+                                            size:(100,40)
+                                            
+                                    
+                                        Button:
+                                            text:'Update Profile'
+                                            size_hint:None,None
+                                            size:(200,40)
+                                    
+                                                                     
+
+
+                                        
+
+                                
+
+                        ScrollView:
+                            
+                            bar_width: 10
+                            bar_color: 1, 0, 0, 1   # red
+                            bar_inactive_color: 0, 0, 1, 1   # blue
+                            effect_cls: "ScrollEffect"
+                            scroll_type: ['bars']
+                            padding:[50,10,50,0]
+                            BoxLayout:
+                                orientation:'vertical'
+                                BoxLayout:
+                                    spacing:10
+                                    
+                                    ImageButton:
+                                        
+                                        source:'padlock.png'  
+                                        size_hint:None,None
+                                        size:70,40
+                                    Button:
+                                        text:"Change Password"
+                                        halign: 'left'
+                                        color:0,0,0,1
+                                        background_normal:""
+                                        background_down:'dark.png'
+                                        font_size: 25
+                                        size_hint:None,None
+                                        size:200,40
+                                        
+                                    Button:
+                                        text:""
+                                        halign: 'left'
+                                        background_normal:""
+                                        background_color: rgba('#010c47')
+                                        background_down:'dark.png'
+                                        font_size: 25
+                                        size_hint_y:None
+                                        height:30
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:[0,10,30,0]
+                                    canvas.before:
+                                        Color:
+                                            rgba:0,0,0,1
+                                        Line:
+                                            width:1
+                                            rectangle:(self.x,self.y, self.width,self.height )
+                            
+                                    GridLayout:
+                                        
+                                        spacing:10
+                                        cols:2
+                                        row_force_default:True
+                                        row_default_height:40
+                                                
+                                        Label:
+                                            text:"Name"
+                                            color:0,0,0,1
+                                            
+
+                                        TextInput:
+                                            multiline:False
+                                            id:profile_name
+                                            size_hint:None,None
+                                            size:400,40
+
+
+                                                
+                                        Label:
+                                            text:"Password"
+                                            color:0,0,0,1
+                                            
+
+                                        TextInput:
+                                            multiline:False
+                                            id:profile_password
+                                            size_hint:None,None
+                                            size:400,40
+
+
+                                                
+                                        Label:
+                                            text:"New password"
+                                            color:0,0,0,1
+                                            
+
+                                        TextInput:
+                                            multiline:False
+                                            id:profile_newpassword
+                                            size_hint:None,None
+                                            size:400,40
+
+                                                
+                                        Label:
+                                            text:"Confirm New password"
+                                            color:0,0,0,1
+                                            
+
+                                        TextInput:
+                                            multiline:False
+                                            id:profile_confirmpassword
+                                            size_hint:None,None
+                                            size:400,40
+                                                                     
+                                    BoxLayout:
+                                        Label:
+                                            text:""
+                                            color:0,0,0,1
+                                            size_hint:None,None
+                                            size:(200,40)
+                                        
+                                
+                                        Button:
+                                            text:'Update Password'
+                                            size_hint:None,None
+                                            size:(200,25)
+
+<Add_prescription>:
+    cols:1
+    BoxLayout:
+        BoxLayout:
+            orientation:"vertical"
+            BoxLayout:
+                orientation:"vertical"
+                GridLayout:
+                    cols:2
+                    row_force_default:True
+                    row_default_height:40
+                    spacing:20
+                    padding:[0,20,100,0]
+                  
+                    
+                    Label:
+                        text:'Doctor'
+                        color:0,0,0,1
+                        font_size:20
+                    TextInput:
+                        id:appoinment_doctor
+                        size_hint_x:None
+                        width:700
+
+                    Label:
+                        text:'Patient'
+                        color:0,0,0,1
+                        font_size:20
+                    TextInput:
+                        id:prescription_patient
+                        multiline:False
+                        size_hint_x:None
+                        width:700
+                        
+                    Label:
+                        text:'Case History'
+                        color:0,0,0,1
+                        font_size:20
+                    TextInput:
+                        id:prescription_history
+                        multiline:True
+                        size_hint:None,None
+                        size:(700,50)
+
+                    Label:
+                        text:'Medication'
+                        color:0,0,0,1
+                        font_size:20
+                    TextInput:
+                        id:prescription_med
+                        multiline:False
+                        size_hint_x:None
+                        width:700
+
+                    
+                    Label:
+                        text:'Medication from \n pharmacist'
+                        color:0,0,0,1
+                        font_size:20
+                    TextInput:
+                        id:prescription_pharm
+                        multiline:True
+                        size_hint:None,None
+                        size:(700,50)
+
+                    Label:
+                        text:'Description'
+                        color:0,0,0,1
+                        font_size:20
+                    TextInput:
+                        id:prescription_med
+                        multiline:False
+                        size_hint:None,None
+                        size:(700,50)
+
+                    Label:
+                        text:'Date'
+                        color:0,0,0,1
+                        font_size:20
+                    TextInput:
+                        id:prescription_date
+                        multiline:False
+                        size_hint:None,None
+                        size:(700,50)
+             
+             
+
+
+
+
+    BoxLayout:
+        Label:
+            text:''
+            color:0,0,0,1
+            font_size:20
+            size_hint:None,None
+            size:(200,40)
+        
+        Button:
+            text:'Add Prescription'
+            size_hint:None,None
+            size:(200,40)
+
+    
+
+                                    
+                                        
+
+
